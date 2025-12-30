@@ -33,7 +33,7 @@ const styles = {
     marginBottom: "20px",
     borderBottom: "2px solid #2cd060ff",
     paddingBottom: "10px",
-    background: "linear-gradient(135deg, #d058beff, #78bbdfff)",
+    background: "linear-gradient(135deg, #db7c2fff, #d3702fff)",
     flexWrap: "wrap",
   },
   menuBtn: {

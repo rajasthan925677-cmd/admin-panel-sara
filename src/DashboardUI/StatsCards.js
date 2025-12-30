@@ -53,7 +53,7 @@ const styles = {
   statsCard: {
     flex: 1,
     minWidth: "200px",
-    background: "linear-gradient(135deg, #b55ee4ff, #0ef77eff)",
+    background: "linear-gradient(135deg,  #e49c32ff, #e49631ff)",
     padding: "20px",
     borderRadius: "10px",
     textAlign: "center",

@@ -17,7 +17,7 @@ const SideBar = ({ setActiveCard }) => {
   return (
     <div style={styles.sidebar}>
       <h3 style={{ color: "#fff", marginBottom: "20px" }}>Admin Panel</h3>
-      <button style={styles.sidebarBtn} onClick={() => setActiveCard("users")}>
+      <button style={styles.sidebarBtn} onClick={() => navigate("/users")}>
         User Management
       </button>
       <button style={styles.sidebarBtn} onClick={() => setActiveCard("games")}>
@@ -64,7 +64,7 @@ const SideBar = ({ setActiveCard }) => {
 const styles = {
   sidebar: {
     width: "280px",
-    background: "linear-gradient(135deg, #5a6952ff, #564e8aff)",
+    background: "linear-gradient(135deg,    #e49c32ff, #e49631ff)",
     padding: "20px",
     height: "110vh",
     display: "flex",

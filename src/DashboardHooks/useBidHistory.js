@@ -29,16 +29,65 @@ const useBidHistory = () => {
     return `${day} ${month} ${year}`;
   };
 
-  const fetchData = useCallback(async () => {
-    try {
-      const gamesData = await gameService.getGames();
-      setGames(gamesData);
-    } catch (err) {
-      console.error("Error fetching games:", err.message);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  // const fetchData = useCallback(async () => {
+  //   try {
+  //     const gamesData = await gameService.getGames();
+  //     setGames(gamesData);
+  //   } catch (err) {
+  //     console.error("Error fetching games:", err.message);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, []);
+
+
+
+
+const fetchData = useCallback(async () => {
+  try {
+    const gamesData = await gameService.getGames();
+
+    // ===== YEH NAYA CODE ADD HUA HAI - SORTING =====
+    let sortedGames = gamesData || [];
+
+    const timeToMinutes = (timeStr) => {
+      if (!timeStr || typeof timeStr !== 'string') return 9999;
+      const [hours, minutes] = timeStr.trim().split(':').map(Number);
+      if (isNaN(hours) || isNaN(minutes)) return 9999;
+      return hours * 60 + minutes;
+    };
+
+    sortedGames = sortedGames.sort((a, b) => {
+      return timeToMinutes(a.openTime) - timeToMinutes(b.openTime);
+    });
+    // ===== YEH TAK =====
+
+    setGames(sortedGames);  // ← Ab sorted order mein set hoga
+
+  } catch (err) {
+    console.error("Error fetching games:", err.message);
+    setGames([]);
+  } finally {
+    setLoading(false);
+  }
+}, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const handleSearch = async () => {
     try {

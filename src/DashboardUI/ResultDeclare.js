@@ -51,6 +51,38 @@ function ResultDeclare() {
     fetchGames();
   }, []);
 
+
+
+
+
+  // ←←← YEH NAYA CODE YAHAN PASTE KARO ←←←
+  useEffect(() => {
+    // Page load होते ही आज की तारीख automatically select कर दो
+    const today = new Date();
+    setSelectedDate(today);
+
+    // और resultDate में भी formatted string डाल दो (जैसे "30 Dec 2025")
+    const formattedToday = today.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
+    }).replace(/Sept\b/, 'Sep');  // September को Sep करने के लिए
+
+    setResultDate(formattedToday);
+  }, []);  // [] means सिर्फ एक बार चलेगा जब page खुलेगा
+  // ←←← YEH TAK ←←←
+
+
+
+
+
+
+
+
+
+
+
+
   // Handle date change and format to "DD MMM YYYY"
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -93,11 +125,11 @@ function ResultDeclare() {
       padding: '20px',
     },
     card: {
-      background: 'linear-gradient(135deg, #44cbf9ff, #4cd137)',
+      background: 'linear-gradient(135deg, #b1a6d8ff, #9fc29aff)',
       padding: '25px',
       borderRadius: '12px',
       boxShadow: '0 6px 12px rgba(0,0,0,0.1)',
-      transition: 'transform 0.2s ease',
+      transition: 'transform 0.2s ease', 
       maxWidth: '500px',
       width: '100%',
       color: '#333',
@@ -107,7 +139,7 @@ function ResultDeclare() {
       alignItems: 'center',
       background: 'none',
       border: 'none',
-      color: '#3e0af8ff',
+      color: '#fefeffff',
       fontWeight: '600',
       fontSize: '16px',
       cursor: 'pointer',
@@ -118,7 +150,7 @@ function ResultDeclare() {
       marginBottom: '40px',
       textDecoration: 'underline',
       fontSize: '40px',
-      color: '#0ff016ff',
+      color: '#eff7efff',
       fontWeight: 'bold',
     },
     form: {
@@ -209,7 +241,7 @@ function ResultDeclare() {
 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
   {/* Back Button */}
   <button onClick={handleBackToDashboard} style={styles.backButton}>
-    <svg style={{ width: '20px', height: '20px', marginRight: '8px' }} fill="none" stroke="#3e0af8ff" viewBox="0 0 24 24">
+    <svg style={{ width: '40px', height: '40px', marginRight: '8px' }} fill="none" stroke="#f2f2f5ff" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
     </svg>
     Back to Dashboard
@@ -244,7 +276,7 @@ function ResultDeclare() {
 
 
         {/* Title */}
-        <h2 style={styles.title}>Declare Matka Result</h2>
+        <h2 style={styles.title}>Declare Result</h2>
 
         {/* Form */}
         <form onSubmit={handleSubmit} style={styles.form}>

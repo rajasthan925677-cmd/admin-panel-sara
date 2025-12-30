@@ -44,20 +44,65 @@ const useWinHistory = () => {
     return `${day} ${month} ${year}`;
   };
 
-  const fetchData = useCallback(async () => {
-    try {
-      const gamesData = await Promise.race([
-        gameService.getGames(),
-        new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout fetching games")), 5000)),
-      ]);
-      setGames(gamesData || []);
-    } catch (err) {
-      console.error("Error fetching games:", err.message);
-      setGames([]);
-    } finally {
-      setGamesLoading(false);
-    }
-  }, []);
+  // const fetchData = useCallback(async () => {
+  //   try {
+  //     const gamesData = await Promise.race([
+  //       gameService.getGames(),
+  //       new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout fetching games")), 5000)),
+  //     ]);
+  //     setGames(gamesData || []);
+  //   } catch (err) {
+  //     console.error("Error fetching games:", err.message);
+  //     setGames([]);
+  //   } finally {
+  //     setGamesLoading(false);
+  //   }
+  // }, []);
+
+
+
+const fetchData = useCallback(async () => {
+  try {
+    const gamesData = await Promise.race([
+      gameService.getGames(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Timeout fetching games")), 5000)),
+    ]);
+
+    // ==== YEH NAYA CODE ADD HUA HAI (SORTING) ====
+    let sortedGames = gamesData || [];
+
+    // Time ko minutes mein convert karne ka function
+    const timeToMinutes = (timeStr) => {
+      if (!timeStr || typeof timeStr !== 'string') return 9999; // galat time → last mein jayega
+      const [hours, minutes] = timeStr.trim().split(':').map(Number);
+      if (isNaN(hours) || isNaN(minutes)) return 9999;
+      return hours * 60 + minutes;
+    };
+
+    // openTime ke hisaab se ascending order mein sort karo (sabse jaldi khulne wali game upar)
+    sortedGames = sortedGames.sort((a, b) => {
+      return timeToMinutes(a.openTime) - timeToMinutes(b.openTime);
+    });
+
+    // Ab sorted games set karo
+    setGames(sortedGames);
+    // ============================================
+
+  } catch (err) {
+    console.error("Error fetching games:", err.message);
+    setGames([]);
+  } finally {
+    setGamesLoading(false);
+  }
+}, []);
+
+
+
+
+
+
+
+
 
   const fetchTotalWinAmount = useCallback(async () => {
     try {
