@@ -119,6 +119,9 @@ const WinHistory = () => {
                   <th style={styles.tableHeader}>Mobile No</th>
                   <th style={styles.tableHeader}>Game ID</th>
                   <th style={styles.tableHeader}>Game Type</th>
+<th style={styles.tableHeader}>Status</th>
+                  <th style={styles.tableHeader}>Payout Amount</th>
+
                   <th style={styles.tableHeader}>Session</th>
                   <th style={styles.tableHeader}>Bid Digit</th>
                   <th style={styles.tableHeader}>Open Pana</th>
@@ -128,8 +131,10 @@ const WinHistory = () => {
                   <th style={styles.tableHeader}>Bid Amount</th>
                   <th style={styles.tableHeader}>Date</th>
                   <th style={styles.tableHeader}>Time</th>
-                  <th style={styles.tableHeader}>Status</th>
-                  <th style={styles.tableHeader}>Payout Amount</th>
+                  
+
+                  {/* <th style={styles.tableHeader}>Payout Amount</th> */}
+
                   <th style={styles.tableHeader}>Actions</th>
                 </tr>
               </thead>
@@ -170,6 +175,69 @@ const WinHistory = () => {
                         bid.gameType
                       )}
                     </td>
+
+
+
+
+
+
+ <td style={styles.bidCell}>
+                      {editingBidId === bid.docId ? (
+                        <input
+                          style={styles.bidInput}
+                          value={editedBids[bid.docId]?.status || bid.status}
+                          onChange={(e) =>
+                            handleBidChange(bid.docId, "status", e.target.value)
+                          }
+                        />
+                      ) : (
+                        bid.status
+                      )}
+                    </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <td style={styles.bidCell}>
+                      {editingBidId === bid.docId ? (
+                        <input
+                          style={styles.bidInput}
+                          value={editedBids[bid.docId]?.payoutAmount || bid.payoutAmount || ''}
+                          onChange={(e) =>
+                            handleBidChange(bid.docId, "payoutAmount", e.target.value)
+                          }
+                        />
+                      ) : (
+                        bid.payoutAmount ? `₹${bid.payoutAmount}` : '-'
+                      )}
+                    </td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <td style={styles.bidCell}>
                       {editingBidId === bid.docId ? (
                         <input
@@ -287,7 +355,7 @@ const WinHistory = () => {
                         bid.time
                       )}
                     </td>
-                    <td style={styles.bidCell}>
+                    {/* <td style={styles.bidCell}>
                       {editingBidId === bid.docId ? (
                         <input
                           style={styles.bidInput}
@@ -312,7 +380,7 @@ const WinHistory = () => {
                       ) : (
                         bid.payoutAmount ? `₹${bid.payoutAmount}` : '-'
                       )}
-                    </td>
+                    </td> */}
                     <td style={styles.bidCell}>
                       <div style={{ display: "flex", gap: "5px" }}>
                         <button

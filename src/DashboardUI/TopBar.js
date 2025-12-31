@@ -12,12 +12,12 @@ const TopBar = ({ showSidebar, setShowSidebar, showAdminUPI, setShowAdminUPI, ha
       </div>
       <div style={{ display: "flex", alignItems: "center" }}>
         <div
-          style={{ marginRight: "15px", cursor: "pointer", color: "#d52196ff", fontWeight: "bold" }}
+          style={{ marginRight: "15px", cursor: "pointer", color: "#f8f2f6ff", fontWeight: "bold" }}
           onClick={() => setShowAdminUPI(!showAdminUPI)}
         >
           Admin   UPI
         </div>
-        <div style={{ cursor: "pointer", color: "#e84118", fontWeight: "bold", marginRight: "30px" }} onClick={handleLogout}>
+        <div style={{ cursor: "pointer", color: "#0a0908ff", fontWeight: "bold", marginRight: "30px" }} onClick={handleLogout}>
           ⚙️ Log Out
         </div>
       </div>
